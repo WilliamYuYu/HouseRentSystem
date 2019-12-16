@@ -35,7 +35,7 @@ public class UserMgeSvr extends ApplicationBase implements IUserMgeSvr {
      */
     @Override
     public User updateUserInfo(User user) {
-        //TODO: 未实现.
+
         return null;
     }
 
