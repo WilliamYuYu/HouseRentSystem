@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    合同信息的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:21:45.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.ContractInfoDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.ContractInfo" id="contractInfoResultMap">
+        <id property="con_id" column="con_id" />
+        <result property="house_id" column="house_id" />
+        <result property="user_id" column="user_id" />
+        <result property="admin_id" column="admin_id" />
+        <result property="con_isSigned" column="con_isSigned" />
+        <result property="con_signTime" column="con_signTime" />
+        <result property="user_realName" column="user_realName" />
+        <result property="user_identity" column="user_identity" />
+        <result property="house_address" column="house_address" />
+        <result property="con_startTime" column="con_startTime" />
+        <result property="con_endTime" column="con_endTime" />
+        <result property="house_rent" column="house_rent" />
+        <result property="house_months" column="house_months" />
+        <result property="user_tel" column="user_tel" />
+        <result property="con_path" column="con_path" />
+    </resultMap>
+
+    <sql id="contractInfoBaseCol">
+        t.con_id,t.house_id,t.user_id,t.admin_id,t.con_isSigned,t.con_signTime,t.user_realName,t.user_identity,t.house_address,t.con_startTime,t.con_endTime,t.house_rent,t.house_months,t.user_tel,t.con_path
+    </sql>
+
+    <sql id="contractInfoWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="con_id != null">and t.con_id = #{con_id}</if>
+            <if test="con_id_L != null"><![CDATA[ and t.con_id >= #{con_id_L} and t.con_id <= #{con_id_H} ]]></if>
+            <if test="con_id_Enum != null">
+                and t.con_id in
+                <foreach collection="con_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_id != null">and t.house_id = #{house_id}</if>
+            <if test="house_id_L != null"><![CDATA[ and t.house_id >= #{house_id_L} and t.house_id <= #{house_id_H} ]]></if>
+            <if test="house_id_Enum != null">
+                and t.house_id in
+                <foreach collection="house_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_id != null">and t.user_id = #{user_id}</if>
+            <if test="user_id_L != null"><![CDATA[ and t.user_id >= #{user_id_L} and t.user_id <= #{user_id_H} ]]></if>
+            <if test="user_id_Enum != null">
+                and t.user_id in
+                <foreach collection="user_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_id != null">and t.admin_id = #{admin_id}</if>
+            <if test="admin_id_L != null"><![CDATA[ and t.admin_id >= #{admin_id_L} and t.admin_id <= #{admin_id_H} ]]></if>
+            <if test="admin_id_Enum != null">
+                and t.admin_id in
+                <foreach collection="admin_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="con_isSigned != null">
+                <if test="con_isSigned == ''">
+                    and (t.con_isSigned is null or t.con_isSigned = '')
+                </if>
+                <if test="con_isSigned != ''">
+                    and t.con_isSigned like #{con_isSigned}
+                </if>
+            </if>
+            <if test="con_isSigned_Enum != null">
+                and t.con_isSigned in
+                <foreach collection="con_isSigned_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="con_signTime != null">and t.con_signTime = #{con_signTime}</if>
+            <if test="con_signTime_S != null"><![CDATA[ and t.con_signTime > #{con_signTime_S} and t.con_signTime < #{con_signTime_E} ]]></if>
+            <if test="user_realName != null">
+                <if test="user_realName == ''">
+                    and (t.user_realName is null or t.user_realName = '')
+                </if>
+                <if test="user_realName != ''">
+                    and t.user_realName like #{user_realName}
+                </if>
+            </if>
+            <if test="user_realName_Enum != null">
+                and t.user_realName in
+                <foreach collection="user_realName_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_identity != null">
+                <if test="user_identity == ''">
+                    and (t.user_identity is null or t.user_identity = '')
+                </if>
+                <if test="user_identity != ''">
+                    and t.user_identity like #{user_identity}
+                </if>
+            </if>
+            <if test="user_identity_Enum != null">
+                and t.user_identity in
+                <foreach collection="user_identity_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_address != null">
+                <if test="house_address == ''">
+                    and (t.house_address is null or t.house_address = '')
+                </if>
+                <if test="house_address != ''">
+                    and t.house_address like #{house_address}
+                </if>
+            </if>
+            <if test="house_address_Enum != null">
+                and t.house_address in
+                <foreach collection="house_address_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="con_startTime != null">and t.con_startTime = #{con_startTime}</if>
+            <if test="con_startTime_S != null"><![CDATA[ and t.con_startTime > #{con_startTime_S} and t.con_startTime < #{con_startTime_E} ]]></if>
+            <if test="con_endTime != null">and t.con_endTime = #{con_endTime}</if>
+            <if test="con_endTime_S != null"><![CDATA[ and t.con_endTime > #{con_endTime_S} and t.con_endTime < #{con_endTime_E} ]]></if>
+            <if test="house_rent != null">and t.house_rent = #{house_rent}</if>
+            <if test="house_rent_L != null"><![CDATA[ and t.house_rent >= #{house_rent_L} and t.house_rent <= #{house_rent_H} ]]></if>
+            <if test="house_rent_Enum != null">
+                and t.house_rent in
+                <foreach collection="house_rent_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_months != null">and t.house_months = #{house_months}</if>
+            <if test="house_months_L != null"><![CDATA[ and t.house_months >= #{house_months_L} and t.house_months <= #{house_months_H} ]]></if>
+            <if test="house_months_Enum != null">
+                and t.house_months in
+                <foreach collection="house_months_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_tel != null">
+                <if test="user_tel == ''">
+                    and (t.user_tel is null or t.user_tel = '')
+                </if>
+                <if test="user_tel != ''">
+                    and t.user_tel like #{user_tel}
+                </if>
+            </if>
+            <if test="user_tel_Enum != null">
+                and t.user_tel in
+                <foreach collection="user_tel_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="con_path != null">
+                <if test="con_path == ''">
+                    and (t.con_path is null or t.con_path = '')
+                </if>
+                <if test="con_path != ''">
+                    and t.con_path like #{con_path}
+                </if>
+            </if>
+            <if test="con_path_Enum != null">
+                and t.con_path in
+                <foreach collection="con_path_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'con_id'">t.con_id = #{item.value}</if>
+                    <if test="item.name == 'house_id'">t.house_id = #{item.value}</if>
+                    <if test="item.name == 'user_id'">t.user_id = #{item.value}</if>
+                    <if test="item.name == 'admin_id'">t.admin_id = #{item.value}</if>
+                    <if test="item.name == 'con_isSigned'">t.con_isSigned like #{item.value}</if>
+                    <if test="item.name == 'con_signTime'">t.con_signTime = #{item.value}</if>
+                    <if test="item.name == 'user_realName'">t.user_realName like #{item.value}</if>
+                    <if test="item.name == 'user_identity'">t.user_identity like #{item.value}</if>
+                    <if test="item.name == 'house_address'">t.house_address like #{item.value}</if>
+                    <if test="item.name == 'con_startTime'">t.con_startTime = #{item.value}</if>
+                    <if test="item.name == 'con_endTime'">t.con_endTime = #{item.value}</if>
+                    <if test="item.name == 'house_rent'">t.house_rent = #{item.value}</if>
+                    <if test="item.name == 'house_months'">t.house_months = #{item.value}</if>
+                    <if test="item.name == 'user_tel'">t.user_tel like #{item.value}</if>
+                    <if test="item.name == 'con_path'">t.con_path like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="contractInfoOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'con_id'">t.con_id</if>
+                    <if test="item == 'con_id_D'">t.con_id desc</if>
+                    <if test="item == 'house_id'">t.house_id</if>
+                    <if test="item == 'house_id_D'">t.house_id desc</if>
+                    <if test="item == 'user_id'">t.user_id</if>
+                    <if test="item == 'user_id_D'">t.user_id desc</if>
+                    <if test="item == 'admin_id'">t.admin_id</if>
+                    <if test="item == 'admin_id_D'">t.admin_id desc</if>
+                    <if test="item == 'con_isSigned'">t.con_isSigned</if>
+                    <if test="item == 'con_isSigned_D'">t.con_isSigned desc</if>
+                    <if test="item == 'con_signTime'">t.con_signTime</if>
+                    <if test="item == 'con_signTime_D'">t.con_signTime desc</if>
+                    <if test="item == 'user_realName'">t.user_realName</if>
+                    <if test="item == 'user_realName_D'">t.user_realName desc</if>
+                    <if test="item == 'user_identity'">t.user_identity</if>
+                    <if test="item == 'user_identity_D'">t.user_identity desc</if>
+                    <if test="item == 'house_address'">t.house_address</if>
+                    <if test="item == 'house_address_D'">t.house_address desc</if>
+                    <if test="item == 'con_startTime'">t.con_startTime</if>
+                    <if test="item == 'con_startTime_D'">t.con_startTime desc</if>
+                    <if test="item == 'con_endTime'">t.con_endTime</if>
+                    <if test="item == 'con_endTime_D'">t.con_endTime desc</if>
+                    <if test="item == 'house_rent'">t.house_rent</if>
+                    <if test="item == 'house_rent_D'">t.house_rent desc</if>
+                    <if test="item == 'house_months'">t.house_months</if>
+                    <if test="item == 'house_months_D'">t.house_months desc</if>
+                    <if test="item == 'user_tel'">t.user_tel</if>
+                    <if test="item == 'user_tel_D'">t.user_tel desc</if>
+                    <if test="item == 'con_path'">t.con_path</if>
+                    <if test="item == 'con_path_D'">t.con_path desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertContractInfo" parameterType="com.pengesoft.fwzlxt.domain.ContractInfo">
+        insert into ContractTable(
+
+            house_id,
+            user_id,
+            admin_id,
+            con_isSigned,
+            con_signTime,
+            user_realName,
+            user_identity,
+            house_address,
+            con_startTime,
+            con_endTime,
+            house_rent,
+            house_months,
+            user_tel,
+            con_path
+        )values(
+
+            #{house_id,jdbcType=INTEGER},
+            #{user_id,jdbcType=INTEGER},
+            #{admin_id,jdbcType=INTEGER},
+            #{con_isSigned,jdbcType=VARCHAR},
+            #{con_signTime,jdbcType=TIMESTAMP},
+            #{user_realName,jdbcType=VARCHAR},
+            #{user_identity,jdbcType=VARCHAR},
+            #{house_address,jdbcType=VARCHAR},
+            #{con_startTime,jdbcType=TIMESTAMP},
+            #{con_endTime,jdbcType=TIMESTAMP},
+            #{house_rent,jdbcType=DOUBLE},
+            #{house_months,jdbcType=INTEGER},
+            #{user_tel,jdbcType=VARCHAR},
+            #{con_path,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateContractInfo" parameterType="com.pengesoft.fwzlxt.domain.ContractInfo">
+        update ContractTable set
+            house_id = #{house_id,jdbcType=INTEGER},
+            user_id = #{user_id,jdbcType=INTEGER},
+            admin_id = #{admin_id,jdbcType=INTEGER},
+            con_isSigned = #{con_isSigned,jdbcType=VARCHAR},
+            con_signTime = #{con_signTime,jdbcType=TIMESTAMP},
+            user_realName = #{user_realName,jdbcType=VARCHAR},
+            user_identity = #{user_identity,jdbcType=VARCHAR},
+            house_address = #{house_address,jdbcType=VARCHAR},
+            con_startTime = #{con_startTime,jdbcType=TIMESTAMP},
+            con_endTime = #{con_endTime,jdbcType=TIMESTAMP},
+            house_rent = #{house_rent,jdbcType=DOUBLE},
+            house_months = #{house_months,jdbcType=INTEGER},
+            user_tel = #{user_tel,jdbcType=VARCHAR},
+            con_path = #{con_path,jdbcType=VARCHAR}
+        where con_id=#{con_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteContractInfo" parameterType="com.pengesoft.fwzlxt.domain.ContractInfo">
+        delete from ContractTable where con_id=#{con_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseContractInfo" parameterType="com.pengesoft.fwzlxt.domain.ContractInfo" resultMap="contractInfoResultMap">
+        select
+        <include refid="contractInfoBaseCol" />
+        from ContractTable t where t.con_id=#{con_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getContractInfo" parameterType="com.pengesoft.fwzlxt.domain.ContractInfo" resultMap="contractInfoResultMap">
+        select t.* from ContractTable t where t.con_id=#{con_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryContractInfoCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from ContractTable t
+        <include refid="contractInfoWhereSql" />
+    </select>
+
+    <select id="queryBaseContractInfoList" parameterType="java.util.Map" resultMap="contractInfoResultMap">
+        select
+        <include refid="contractInfoBaseCol" />
+        from ContractTable t
+        <include refid="contractInfoWhereSql" />
+        <include refid="contractInfoOrderSql" />
+    </select>
+
+    <select id="queryContractInfoList" parameterType="java.util.Map" resultMap="contractInfoResultMap">
+        select t.* from ContractTable t
+        <include refid="contractInfoWhereSql" />
+        <include refid="contractInfoOrderSql" />
+    </select>
+</mapper>

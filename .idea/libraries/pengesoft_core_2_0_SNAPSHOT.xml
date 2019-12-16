@@ -1,7 +1,8 @@
 <component name="libraryTable">
   <library name="pengesoft-core-2.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/main/resources/libs/pengesoft-core-2.0-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/classes/libs/pengesoft-core-2.0-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/classes/libs/ps-frames-1.0-20191113.135145-22.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    房屋图片的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:21:06.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.HousePictureDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.HousePicture" id="housePictureResultMap">
+        <id property="pic_id" column="pic_id" />
+        <result property="house_id" column="house_id" />
+        <result property="pic_path" column="pic_path" />
+    </resultMap>
+
+    <sql id="housePictureBaseCol">
+        t.pic_id,t.house_id,t.pic_path
+    </sql>
+
+    <sql id="housePictureWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="pic_id != null">and t.pic_id = #{pic_id}</if>
+            <if test="pic_id_L != null"><![CDATA[ and t.pic_id >= #{pic_id_L} and t.pic_id <= #{pic_id_H} ]]></if>
+            <if test="pic_id_Enum != null">
+                and t.pic_id in
+                <foreach collection="pic_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_id != null">and t.house_id = #{house_id}</if>
+            <if test="house_id_L != null"><![CDATA[ and t.house_id >= #{house_id_L} and t.house_id <= #{house_id_H} ]]></if>
+            <if test="house_id_Enum != null">
+                and t.house_id in
+                <foreach collection="house_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="pic_path != null">
+                <if test="pic_path == ''">
+                    and (t.pic_path is null or t.pic_path = '')
+                </if>
+                <if test="pic_path != ''">
+                    and t.pic_path like #{pic_path}
+                </if>
+            </if>
+            <if test="pic_path_Enum != null">
+                and t.pic_path in
+                <foreach collection="pic_path_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'pic_id'">t.pic_id = #{item.value}</if>
+                    <if test="item.name == 'house_id'">t.house_id = #{item.value}</if>
+                    <if test="item.name == 'pic_path'">t.pic_path like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="housePictureOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'pic_id'">t.pic_id</if>
+                    <if test="item == 'pic_id_D'">t.pic_id desc</if>
+                    <if test="item == 'house_id'">t.house_id</if>
+                    <if test="item == 'house_id_D'">t.house_id desc</if>
+                    <if test="item == 'pic_path'">t.pic_path</if>
+                    <if test="item == 'pic_path_D'">t.pic_path desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertHousePicture" parameterType="com.pengesoft.fwzlxt.domain.HousePicture">
+        insert into HousePictureTable(
+
+            house_id,
+            pic_path
+        )values(
+
+            #{house_id,jdbcType=INTEGER},
+            #{pic_path,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateHousePicture" parameterType="com.pengesoft.fwzlxt.domain.HousePicture">
+        update HousePictureTable set
+            house_id = #{house_id,jdbcType=INTEGER},
+            pic_path = #{pic_path,jdbcType=VARCHAR}
+        where pic_id=#{pic_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteHousePicture" parameterType="com.pengesoft.fwzlxt.domain.HousePicture">
+        delete from HousePictureTable where pic_id=#{pic_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseHousePicture" parameterType="com.pengesoft.fwzlxt.domain.HousePicture" resultMap="housePictureResultMap">
+        select
+        <include refid="housePictureBaseCol" />
+        from HousePictureTable t where t.pic_id=#{pic_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getHousePicture" parameterType="com.pengesoft.fwzlxt.domain.HousePicture" resultMap="housePictureResultMap">
+        select t.* from HousePictureTable t where t.pic_id=#{pic_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryHousePictureCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from HousePictureTable t
+        <include refid="housePictureWhereSql" />
+    </select>
+
+    <select id="queryBaseHousePictureList" parameterType="java.util.Map" resultMap="housePictureResultMap">
+        select
+        <include refid="housePictureBaseCol" />
+        from HousePictureTable t
+        <include refid="housePictureWhereSql" />
+        <include refid="housePictureOrderSql" />
+    </select>
+
+    <select id="queryHousePictureList" parameterType="java.util.Map" resultMap="housePictureResultMap">
+        select t.* from HousePictureTable t
+        <include refid="housePictureWhereSql" />
+        <include refid="housePictureOrderSql" />
+    </select>
+</mapper>

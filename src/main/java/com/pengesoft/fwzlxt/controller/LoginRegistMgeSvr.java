@@ -1,13 +1,14 @@
 package com.pengesoft.fwzlxt.controller;
+
 import com.pengesoft.fwzlxt.domain.User;
 import com.pengesoft.fwzlxt.domain.dao.UserDao;
 import com.pengesoft.fwzlxt.domain.dao.UserQueryPara;
-import pengesoft.service.ApplicationBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pengesoft.service.ApplicationBase;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * ILoginRegistMgeSvr 接口实现。登录注册服务.

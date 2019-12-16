@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    日志操作消息记录的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:20:28.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.LogInfoDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.LogInfo" id="logInfoResultMap">
+        <id property="log_id" column="log_id" />
+        <result property="log_type" column="log_type" />
+        <result property="admin_id" column="admin_id" />
+        <result property="tableName" column="tableName" />
+        <result property="columnName" column="columnName" />
+        <result property="dataContent" column="dataContent" />
+    </resultMap>
+
+    <sql id="logInfoBaseCol">
+        t.log_id,t.log_type,t.admin_id,t.tableName,t.columnName,t.dataContent
+    </sql>
+
+    <sql id="logInfoWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="log_id != null">and t.log_id = #{log_id}</if>
+            <if test="log_id_L != null"><![CDATA[ and t.log_id >= #{log_id_L} and t.log_id <= #{log_id_H} ]]></if>
+            <if test="log_id_Enum != null">
+                and t.log_id in
+                <foreach collection="log_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="log_type != null">
+                <if test="log_type == ''">
+                    and (t.log_type is null or t.log_type = '')
+                </if>
+                <if test="log_type != ''">
+                    and t.log_type like #{log_type}
+                </if>
+            </if>
+            <if test="log_type_Enum != null">
+                and t.log_type in
+                <foreach collection="log_type_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_id != null">
+                <if test="admin_id == ''">
+                    and (t.admin_id is null or t.admin_id = '')
+                </if>
+                <if test="admin_id != ''">
+                    and t.admin_id like #{admin_id}
+                </if>
+            </if>
+            <if test="admin_id_Enum != null">
+                and t.admin_id in
+                <foreach collection="admin_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="tableName != null">
+                <if test="tableName == ''">
+                    and (t.tableName is null or t.tableName = '')
+                </if>
+                <if test="tableName != ''">
+                    and t.tableName like #{tableName}
+                </if>
+            </if>
+            <if test="tableName_Enum != null">
+                and t.tableName in
+                <foreach collection="tableName_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="columnName != null">
+                <if test="columnName == ''">
+                    and (t.columnName is null or t.columnName = '')
+                </if>
+                <if test="columnName != ''">
+                    and t.columnName like #{columnName}
+                </if>
+            </if>
+            <if test="columnName_Enum != null">
+                and t.columnName in
+                <foreach collection="columnName_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="dataContent != null">
+                <if test="dataContent == ''">
+                    and (t.dataContent is null or t.dataContent = '')
+                </if>
+                <if test="dataContent != ''">
+                    and t.dataContent like #{dataContent}
+                </if>
+            </if>
+            <if test="dataContent_Enum != null">
+                and t.dataContent in
+                <foreach collection="dataContent_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'log_id'">t.log_id = #{item.value}</if>
+                    <if test="item.name == 'log_type'">t.log_type like #{item.value}</if>
+                    <if test="item.name == 'admin_id'">t.admin_id like #{item.value}</if>
+                    <if test="item.name == 'tableName'">t.tableName like #{item.value}</if>
+                    <if test="item.name == 'columnName'">t.columnName like #{item.value}</if>
+                    <if test="item.name == 'dataContent'">t.dataContent like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="logInfoOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'log_id'">t.log_id</if>
+                    <if test="item == 'log_id_D'">t.log_id desc</if>
+                    <if test="item == 'log_type'">t.log_type</if>
+                    <if test="item == 'log_type_D'">t.log_type desc</if>
+                    <if test="item == 'admin_id'">t.admin_id</if>
+                    <if test="item == 'admin_id_D'">t.admin_id desc</if>
+                    <if test="item == 'tableName'">t.tableName</if>
+                    <if test="item == 'tableName_D'">t.tableName desc</if>
+                    <if test="item == 'columnName'">t.columnName</if>
+                    <if test="item == 'columnName_D'">t.columnName desc</if>
+                    <if test="item == 'dataContent'">t.dataContent</if>
+                    <if test="item == 'dataContent_D'">t.dataContent desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertLogInfo" parameterType="com.pengesoft.fwzlxt.domain.LogInfo">
+        insert into LogInfoTable(
+
+            log_type,
+            admin_id,
+            tableName,
+            columnName,
+            dataContent
+        )values(
+
+            #{log_type,jdbcType=VARCHAR},
+            #{admin_id,jdbcType=VARCHAR},
+            #{tableName,jdbcType=VARCHAR},
+            #{columnName,jdbcType=VARCHAR},
+            #{dataContent,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateLogInfo" parameterType="com.pengesoft.fwzlxt.domain.LogInfo">
+        update LogInfoTable set
+            log_type = #{log_type,jdbcType=VARCHAR},
+            admin_id = #{admin_id,jdbcType=VARCHAR},
+            tableName = #{tableName,jdbcType=VARCHAR},
+            columnName = #{columnName,jdbcType=VARCHAR},
+            dataContent = #{dataContent,jdbcType=VARCHAR}
+        where log_id=#{log_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteLogInfo" parameterType="com.pengesoft.fwzlxt.domain.LogInfo">
+        delete from LogInfoTable where log_id=#{log_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseLogInfo" parameterType="com.pengesoft.fwzlxt.domain.LogInfo" resultMap="logInfoResultMap">
+        select
+        <include refid="logInfoBaseCol" />
+        from LogInfoTable t where t.log_id=#{log_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getLogInfo" parameterType="com.pengesoft.fwzlxt.domain.LogInfo" resultMap="logInfoResultMap">
+        select t.* from LogInfoTable t where t.log_id=#{log_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryLogInfoCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from LogInfoTable t
+        <include refid="logInfoWhereSql" />
+    </select>
+
+    <select id="queryBaseLogInfoList" parameterType="java.util.Map" resultMap="logInfoResultMap">
+        select
+        <include refid="logInfoBaseCol" />
+        from LogInfoTable t
+        <include refid="logInfoWhereSql" />
+        <include refid="logInfoOrderSql" />
+    </select>
+
+    <select id="queryLogInfoList" parameterType="java.util.Map" resultMap="logInfoResultMap">
+        select t.* from LogInfoTable t
+        <include refid="logInfoWhereSql" />
+        <include refid="logInfoOrderSql" />
+    </select>
+</mapper>

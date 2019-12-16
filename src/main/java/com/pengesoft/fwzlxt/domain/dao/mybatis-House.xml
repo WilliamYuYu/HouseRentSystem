@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    房屋信息的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:22:33.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.HouseDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.House" id="houseResultMap">
+        <id property="house_id" column="house_id" />
+        <result property="user_id" column="user_id" />
+        <result property="admin_id" column="admin_id" />
+        <result property="house_title" column="house_title" />
+        <result property="house_rent" column="house_rent" />
+        <result property="house_pledge" column="house_pledge" />
+        <result property="house_months" column="house_months" />
+        <result property="house_address" column="house_address" />
+        <result property="house_shape" column="house_shape" />
+        <result property="house_direction" column="house_direction" />
+        <result property="house_area" column="house_area" />
+        <result property="house_floor" column="house_floor" />
+        <result property="house_detail" column="house_detail" />
+        <result property="house_jwd" column="house_jwd" />
+        <result property="house_isRented" column="house_isRented" />
+    </resultMap>
+
+    <sql id="houseBaseCol">
+        t.house_id,t.user_id,t.admin_id,t.house_title,t.house_rent,t.house_pledge,t.house_months,t.house_address,t.house_shape,t.house_direction,t.house_area,t.house_floor,t.house_detail,t.house_jwd,t.house_isRented
+    </sql>
+
+    <sql id="houseWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="house_id != null">and t.house_id = #{house_id}</if>
+            <if test="house_id_L != null"><![CDATA[ and t.house_id >= #{house_id_L} and t.house_id <= #{house_id_H} ]]></if>
+            <if test="house_id_Enum != null">
+                and t.house_id in
+                <foreach collection="house_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_id != null">and t.user_id = #{user_id}</if>
+            <if test="user_id_L != null"><![CDATA[ and t.user_id >= #{user_id_L} and t.user_id <= #{user_id_H} ]]></if>
+            <if test="user_id_Enum != null">
+                and t.user_id in
+                <foreach collection="user_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_id != null">and t.admin_id = #{admin_id}</if>
+            <if test="admin_id_L != null"><![CDATA[ and t.admin_id >= #{admin_id_L} and t.admin_id <= #{admin_id_H} ]]></if>
+            <if test="admin_id_Enum != null">
+                and t.admin_id in
+                <foreach collection="admin_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_title != null">
+                <if test="house_title == ''">
+                    and (t.house_title is null or t.house_title = '')
+                </if>
+                <if test="house_title != ''">
+                    and t.house_title like #{house_title}
+                </if>
+            </if>
+            <if test="house_title_Enum != null">
+                and t.house_title in
+                <foreach collection="house_title_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_rent != null">and t.house_rent = #{house_rent}</if>
+            <if test="house_rent_L != null"><![CDATA[ and t.house_rent >= #{house_rent_L} and t.house_rent <= #{house_rent_H} ]]></if>
+            <if test="house_rent_Enum != null">
+                and t.house_rent in
+                <foreach collection="house_rent_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_pledge != null">and t.house_pledge = #{house_pledge}</if>
+            <if test="house_pledge_L != null"><![CDATA[ and t.house_pledge >= #{house_pledge_L} and t.house_pledge <= #{house_pledge_H} ]]></if>
+            <if test="house_pledge_Enum != null">
+                and t.house_pledge in
+                <foreach collection="house_pledge_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_months != null">and t.house_months = #{house_months}</if>
+            <if test="house_months_L != null"><![CDATA[ and t.house_months >= #{house_months_L} and t.house_months <= #{house_months_H} ]]></if>
+            <if test="house_months_Enum != null">
+                and t.house_months in
+                <foreach collection="house_months_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_address != null">
+                <if test="house_address == ''">
+                    and (t.house_address is null or t.house_address = '')
+                </if>
+                <if test="house_address != ''">
+                    and t.house_address like #{house_address}
+                </if>
+            </if>
+            <if test="house_address_Enum != null">
+                and t.house_address in
+                <foreach collection="house_address_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_shape != null">
+                <if test="house_shape == ''">
+                    and (t.house_shape is null or t.house_shape = '')
+                </if>
+                <if test="house_shape != ''">
+                    and t.house_shape like #{house_shape}
+                </if>
+            </if>
+            <if test="house_shape_Enum != null">
+                and t.house_shape in
+                <foreach collection="house_shape_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_direction != null">
+                <if test="house_direction == ''">
+                    and (t.house_direction is null or t.house_direction = '')
+                </if>
+                <if test="house_direction != ''">
+                    and t.house_direction like #{house_direction}
+                </if>
+            </if>
+            <if test="house_direction_Enum != null">
+                and t.house_direction in
+                <foreach collection="house_direction_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_area != null">
+                <if test="house_area == ''">
+                    and (t.house_area is null or t.house_area = '')
+                </if>
+                <if test="house_area != ''">
+                    and t.house_area like #{house_area}
+                </if>
+            </if>
+            <if test="house_area_Enum != null">
+                and t.house_area in
+                <foreach collection="house_area_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_floor != null">
+                <if test="house_floor == ''">
+                    and (t.house_floor is null or t.house_floor = '')
+                </if>
+                <if test="house_floor != ''">
+                    and t.house_floor like #{house_floor}
+                </if>
+            </if>
+            <if test="house_floor_Enum != null">
+                and t.house_floor in
+                <foreach collection="house_floor_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_detail != null">
+                <if test="house_detail == ''">
+                    and (t.house_detail is null or t.house_detail = '')
+                </if>
+                <if test="house_detail != ''">
+                    and t.house_detail like #{house_detail}
+                </if>
+            </if>
+            <if test="house_detail_Enum != null">
+                and t.house_detail in
+                <foreach collection="house_detail_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_jwd != null">
+                <if test="house_jwd == ''">
+                    and (t.house_jwd is null or t.house_jwd = '')
+                </if>
+                <if test="house_jwd != ''">
+                    and t.house_jwd like #{house_jwd}
+                </if>
+            </if>
+            <if test="house_jwd_Enum != null">
+                and t.house_jwd in
+                <foreach collection="house_jwd_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_isRented != null">
+                <if test="house_isRented == ''">
+                    and (t.house_isRented is null or t.house_isRented = '')
+                </if>
+                <if test="house_isRented != ''">
+                    and t.house_isRented like #{house_isRented}
+                </if>
+            </if>
+            <if test="house_isRented_Enum != null">
+                and t.house_isRented in
+                <foreach collection="house_isRented_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'house_id'">t.house_id = #{item.value}</if>
+                    <if test="item.name == 'user_id'">t.user_id = #{item.value}</if>
+                    <if test="item.name == 'admin_id'">t.admin_id = #{item.value}</if>
+                    <if test="item.name == 'house_title'">t.house_title like #{item.value}</if>
+                    <if test="item.name == 'house_rent'">t.house_rent = #{item.value}</if>
+                    <if test="item.name == 'house_pledge'">t.house_pledge = #{item.value}</if>
+                    <if test="item.name == 'house_months'">t.house_months = #{item.value}</if>
+                    <if test="item.name == 'house_address'">t.house_address like #{item.value}</if>
+                    <if test="item.name == 'house_shape'">t.house_shape like #{item.value}</if>
+                    <if test="item.name == 'house_direction'">t.house_direction like #{item.value}</if>
+                    <if test="item.name == 'house_area'">t.house_area like #{item.value}</if>
+                    <if test="item.name == 'house_floor'">t.house_floor like #{item.value}</if>
+                    <if test="item.name == 'house_detail'">t.house_detail like #{item.value}</if>
+                    <if test="item.name == 'house_jwd'">t.house_jwd like #{item.value}</if>
+                    <if test="item.name == 'house_isRented'">t.house_isRented like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="houseOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'house_id'">t.house_id</if>
+                    <if test="item == 'house_id_D'">t.house_id desc</if>
+                    <if test="item == 'user_id'">t.user_id</if>
+                    <if test="item == 'user_id_D'">t.user_id desc</if>
+                    <if test="item == 'admin_id'">t.admin_id</if>
+                    <if test="item == 'admin_id_D'">t.admin_id desc</if>
+                    <if test="item == 'house_title'">t.house_title</if>
+                    <if test="item == 'house_title_D'">t.house_title desc</if>
+                    <if test="item == 'house_rent'">t.house_rent</if>
+                    <if test="item == 'house_rent_D'">t.house_rent desc</if>
+                    <if test="item == 'house_pledge'">t.house_pledge</if>
+                    <if test="item == 'house_pledge_D'">t.house_pledge desc</if>
+                    <if test="item == 'house_months'">t.house_months</if>
+                    <if test="item == 'house_months_D'">t.house_months desc</if>
+                    <if test="item == 'house_address'">t.house_address</if>
+                    <if test="item == 'house_address_D'">t.house_address desc</if>
+                    <if test="item == 'house_shape'">t.house_shape</if>
+                    <if test="item == 'house_shape_D'">t.house_shape desc</if>
+                    <if test="item == 'house_direction'">t.house_direction</if>
+                    <if test="item == 'house_direction_D'">t.house_direction desc</if>
+                    <if test="item == 'house_area'">t.house_area</if>
+                    <if test="item == 'house_area_D'">t.house_area desc</if>
+                    <if test="item == 'house_floor'">t.house_floor</if>
+                    <if test="item == 'house_floor_D'">t.house_floor desc</if>
+                    <if test="item == 'house_detail'">t.house_detail</if>
+                    <if test="item == 'house_detail_D'">t.house_detail desc</if>
+                    <if test="item == 'house_jwd'">t.house_jwd</if>
+                    <if test="item == 'house_jwd_D'">t.house_jwd desc</if>
+                    <if test="item == 'house_isRented'">t.house_isRented</if>
+                    <if test="item == 'house_isRented_D'">t.house_isRented desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertHouse" parameterType="com.pengesoft.fwzlxt.domain.House">
+        insert into HouseTable(
+
+            user_id,
+            admin_id,
+            house_title,
+            house_rent,
+            house_pledge,
+            house_months,
+            house_address,
+            house_shape,
+            house_direction,
+            house_area,
+            house_floor,
+            house_detail,
+            house_jwd,
+            house_isRented
+        )values(
+
+            #{user_id,jdbcType=INTEGER},
+            #{admin_id,jdbcType=INTEGER},
+            #{house_title,jdbcType=VARCHAR},
+            #{house_rent,jdbcType=DOUBLE},
+            #{house_pledge,jdbcType=DOUBLE},
+            #{house_months,jdbcType=INTEGER},
+            #{house_address,jdbcType=VARCHAR},
+            #{house_shape,jdbcType=VARCHAR},
+            #{house_direction,jdbcType=VARCHAR},
+            #{house_area,jdbcType=VARCHAR},
+            #{house_floor,jdbcType=VARCHAR},
+            #{house_detail,jdbcType=VARCHAR},
+            #{house_jwd,jdbcType=VARCHAR},
+            #{house_isRented,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateHouse" parameterType="com.pengesoft.fwzlxt.domain.House">
+        update HouseTable set
+            user_id = #{user_id,jdbcType=INTEGER},
+            admin_id = #{admin_id,jdbcType=INTEGER},
+            house_title = #{house_title,jdbcType=VARCHAR},
+            house_rent = #{house_rent,jdbcType=DOUBLE},
+            house_pledge = #{house_pledge,jdbcType=DOUBLE},
+            house_months = #{house_months,jdbcType=INTEGER},
+            house_address = #{house_address,jdbcType=VARCHAR},
+            house_shape = #{house_shape,jdbcType=VARCHAR},
+            house_direction = #{house_direction,jdbcType=VARCHAR},
+            house_area = #{house_area,jdbcType=VARCHAR},
+            house_floor = #{house_floor,jdbcType=VARCHAR},
+            house_detail = #{house_detail,jdbcType=VARCHAR},
+            house_jwd = #{house_jwd,jdbcType=VARCHAR},
+            house_isRented = #{house_isRented,jdbcType=VARCHAR}
+        where house_id=#{house_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteHouse" parameterType="com.pengesoft.fwzlxt.domain.House">
+        delete from HouseTable where house_id=#{house_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseHouse" parameterType="com.pengesoft.fwzlxt.domain.House" resultMap="houseResultMap">
+        select
+        <include refid="houseBaseCol" />
+        from HouseTable t where t.house_id=#{house_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getHouse" parameterType="com.pengesoft.fwzlxt.domain.House" resultMap="houseResultMap">
+        select t.* from HouseTable t where t.house_id=#{house_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryHouseCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from HouseTable t
+        <include refid="houseWhereSql" />
+    </select>
+
+    <select id="queryBaseHouseList" parameterType="java.util.Map" resultMap="houseResultMap">
+        select
+        <include refid="houseBaseCol" />
+        from HouseTable t
+        <include refid="houseWhereSql" />
+        <include refid="houseOrderSql" />
+    </select>
+
+    <select id="queryHouseList" parameterType="java.util.Map" resultMap="houseResultMap">
+        select t.* from HouseTable t
+        <include refid="houseWhereSql" />
+        <include refid="houseOrderSql" />
+    </select>
+</mapper>

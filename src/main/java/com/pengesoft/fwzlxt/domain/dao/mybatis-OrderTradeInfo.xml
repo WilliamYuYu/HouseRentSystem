@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    订单交易信息的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:22:17.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.OrderTradeInfoDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.OrderTradeInfo" id="orderTradeInfoResultMap">
+        <id property="ot_id" column="ot_id" />
+        <result property="order_id" column="order_id" />
+        <result property="user_id" column="user_id" />
+        <result property="admin_id" column="admin_id" />
+        <result property="con_id" column="con_id" />
+        <result property="ot_amount" column="ot_amount" />
+        <result property="ot_time" column="ot_time" />
+    </resultMap>
+
+    <sql id="orderTradeInfoBaseCol">
+        t.ot_id,t.order_id,t.user_id,t.admin_id,t.con_id,t.ot_amount,t.ot_time
+    </sql>
+
+    <sql id="orderTradeInfoWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="ot_id != null">and t.ot_id = #{ot_id}</if>
+            <if test="ot_id_L != null"><![CDATA[ and t.ot_id >= #{ot_id_L} and t.ot_id <= #{ot_id_H} ]]></if>
+            <if test="ot_id_Enum != null">
+                and t.ot_id in
+                <foreach collection="ot_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="order_id != null">and t.order_id = #{order_id}</if>
+            <if test="order_id_L != null"><![CDATA[ and t.order_id >= #{order_id_L} and t.order_id <= #{order_id_H} ]]></if>
+            <if test="order_id_Enum != null">
+                and t.order_id in
+                <foreach collection="order_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_id != null">and t.user_id = #{user_id}</if>
+            <if test="user_id_L != null"><![CDATA[ and t.user_id >= #{user_id_L} and t.user_id <= #{user_id_H} ]]></if>
+            <if test="user_id_Enum != null">
+                and t.user_id in
+                <foreach collection="user_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_id != null">and t.admin_id = #{admin_id}</if>
+            <if test="admin_id_L != null"><![CDATA[ and t.admin_id >= #{admin_id_L} and t.admin_id <= #{admin_id_H} ]]></if>
+            <if test="admin_id_Enum != null">
+                and t.admin_id in
+                <foreach collection="admin_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="con_id != null">and t.con_id = #{con_id}</if>
+            <if test="con_id_L != null"><![CDATA[ and t.con_id >= #{con_id_L} and t.con_id <= #{con_id_H} ]]></if>
+            <if test="con_id_Enum != null">
+                and t.con_id in
+                <foreach collection="con_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="ot_amount != null">and t.ot_amount = #{ot_amount}</if>
+            <if test="ot_amount_L != null"><![CDATA[ and t.ot_amount >= #{ot_amount_L} and t.ot_amount <= #{ot_amount_H} ]]></if>
+            <if test="ot_amount_Enum != null">
+                and t.ot_amount in
+                <foreach collection="ot_amount_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="ot_time != null">and t.ot_time = #{ot_time}</if>
+            <if test="ot_time_S != null"><![CDATA[ and t.ot_time > #{ot_time_S} and t.ot_time < #{ot_time_E} ]]></if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'ot_id'">t.ot_id = #{item.value}</if>
+                    <if test="item.name == 'order_id'">t.order_id = #{item.value}</if>
+                    <if test="item.name == 'user_id'">t.user_id = #{item.value}</if>
+                    <if test="item.name == 'admin_id'">t.admin_id = #{item.value}</if>
+                    <if test="item.name == 'con_id'">t.con_id = #{item.value}</if>
+                    <if test="item.name == 'ot_amount'">t.ot_amount = #{item.value}</if>
+                    <if test="item.name == 'ot_time'">t.ot_time = #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="orderTradeInfoOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'ot_id'">t.ot_id</if>
+                    <if test="item == 'ot_id_D'">t.ot_id desc</if>
+                    <if test="item == 'order_id'">t.order_id</if>
+                    <if test="item == 'order_id_D'">t.order_id desc</if>
+                    <if test="item == 'user_id'">t.user_id</if>
+                    <if test="item == 'user_id_D'">t.user_id desc</if>
+                    <if test="item == 'admin_id'">t.admin_id</if>
+                    <if test="item == 'admin_id_D'">t.admin_id desc</if>
+                    <if test="item == 'con_id'">t.con_id</if>
+                    <if test="item == 'con_id_D'">t.con_id desc</if>
+                    <if test="item == 'ot_amount'">t.ot_amount</if>
+                    <if test="item == 'ot_amount_D'">t.ot_amount desc</if>
+                    <if test="item == 'ot_time'">t.ot_time</if>
+                    <if test="item == 'ot_time_D'">t.ot_time desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertOrderTradeInfo" parameterType="com.pengesoft.fwzlxt.domain.OrderTradeInfo">
+        insert into OrderTradeInfo(
+
+            order_id,
+            user_id,
+            admin_id,
+            con_id,
+            ot_amount,
+            ot_time
+        )values(
+
+            #{order_id,jdbcType=INTEGER},
+            #{user_id,jdbcType=INTEGER},
+            #{admin_id,jdbcType=INTEGER},
+            #{con_id,jdbcType=INTEGER},
+            #{ot_amount,jdbcType=DOUBLE},
+            #{ot_time,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <update id="updateOrderTradeInfo" parameterType="com.pengesoft.fwzlxt.domain.OrderTradeInfo">
+        update OrderTradeInfo set
+            order_id = #{order_id,jdbcType=INTEGER},
+            user_id = #{user_id,jdbcType=INTEGER},
+            admin_id = #{admin_id,jdbcType=INTEGER},
+            con_id = #{con_id,jdbcType=INTEGER},
+            ot_amount = #{ot_amount,jdbcType=DOUBLE},
+            ot_time = #{ot_time,jdbcType=TIMESTAMP}
+        where ot_id=#{ot_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteOrderTradeInfo" parameterType="com.pengesoft.fwzlxt.domain.OrderTradeInfo">
+        delete from OrderTradeInfo where ot_id=#{ot_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseOrderTradeInfo" parameterType="com.pengesoft.fwzlxt.domain.OrderTradeInfo" resultMap="orderTradeInfoResultMap">
+        select
+        <include refid="orderTradeInfoBaseCol" />
+        from OrderTradeInfo t where t.ot_id=#{ot_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getOrderTradeInfo" parameterType="com.pengesoft.fwzlxt.domain.OrderTradeInfo" resultMap="orderTradeInfoResultMap">
+        select t.* from OrderTradeInfo t where t.ot_id=#{ot_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryOrderTradeInfoCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from OrderTradeInfo t
+        <include refid="orderTradeInfoWhereSql" />
+    </select>
+
+    <select id="queryBaseOrderTradeInfoList" parameterType="java.util.Map" resultMap="orderTradeInfoResultMap">
+        select
+        <include refid="orderTradeInfoBaseCol" />
+        from OrderTradeInfo t
+        <include refid="orderTradeInfoWhereSql" />
+        <include refid="orderTradeInfoOrderSql" />
+    </select>
+
+    <select id="queryOrderTradeInfoList" parameterType="java.util.Map" resultMap="orderTradeInfoResultMap">
+        select t.* from OrderTradeInfo t
+        <include refid="orderTradeInfoWhereSql" />
+        <include refid="orderTradeInfoOrderSql" />
+    </select>
+</mapper>

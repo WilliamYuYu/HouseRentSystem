@@ -5,20 +5,20 @@ import pengesoft.db.QueryDataList;
 import java.util.Collection;
 
 /**
- * 用户列表 的摘要说明。
+ * 管理员列表 的摘要说明。
  *
  * @auther: 余展鹏.
- * @date: 2019/12/16 11:32:25.
+ * @date: 2019/12/13 16:46:58.
  *
  * 文件由鹏业软件模型工具生成(模板名称：JavaListAdv),一般不应直接修改此文件.
  * Copyright (C) 2008 - 鹏业软件公司
  */
-public class UserList extends QueryDataList<User> {
+public class AdminList extends QueryDataList<Admin> {
 
     /**
      * 默认构造方法
      */
-    public UserList() {
+    public AdminList() {
         super();
     }
 
@@ -27,7 +27,7 @@ public class UserList extends QueryDataList<User> {
      *
      * @param c 已存在的集合
      */
-    public UserList(Collection<User> c) {
+    public AdminList(Collection<Admin> c) {
         super(c);
     }
 

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    预约信息的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:23:27.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.BespeakDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.Bespeak" id="bespeakResultMap">
+        <id property="bs_id" column="bs_id" />
+        <result property="bs_type" column="bs_type" />
+        <result property="user_id" column="user_id" />
+        <result property="user_tel" column="user_tel" />
+        <result property="house_id" column="house_id" />
+        <result property="admin_id" column="admin_id" />
+        <result property="bs_time" column="bs_time" />
+        <result property="bs_content" column="bs_content" />
+        <result property="bs_isDeal" column="bs_isDeal" />
+    </resultMap>
+
+    <sql id="bespeakBaseCol">
+        t.bs_id,t.bs_type,t.user_id,t.user_tel,t.house_id,t.admin_id,t.bs_time,t.bs_content,t.bs_isDeal
+    </sql>
+
+    <sql id="bespeakWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="bs_id != null">and t.bs_id = #{bs_id}</if>
+            <if test="bs_id_L != null"><![CDATA[ and t.bs_id >= #{bs_id_L} and t.bs_id <= #{bs_id_H} ]]></if>
+            <if test="bs_id_Enum != null">
+                and t.bs_id in
+                <foreach collection="bs_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="bs_type != null">
+                <if test="bs_type == ''">
+                    and (t.bs_type is null or t.bs_type = '')
+                </if>
+                <if test="bs_type != ''">
+                    and t.bs_type like #{bs_type}
+                </if>
+            </if>
+            <if test="bs_type_Enum != null">
+                and t.bs_type in
+                <foreach collection="bs_type_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_id != null">and t.user_id = #{user_id}</if>
+            <if test="user_id_L != null"><![CDATA[ and t.user_id >= #{user_id_L} and t.user_id <= #{user_id_H} ]]></if>
+            <if test="user_id_Enum != null">
+                and t.user_id in
+                <foreach collection="user_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_tel != null">
+                <if test="user_tel == ''">
+                    and (t.user_tel is null or t.user_tel = '')
+                </if>
+                <if test="user_tel != ''">
+                    and t.user_tel like #{user_tel}
+                </if>
+            </if>
+            <if test="user_tel_Enum != null">
+                and t.user_tel in
+                <foreach collection="user_tel_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="house_id != null">and t.house_id = #{house_id}</if>
+            <if test="house_id_L != null"><![CDATA[ and t.house_id >= #{house_id_L} and t.house_id <= #{house_id_H} ]]></if>
+            <if test="house_id_Enum != null">
+                and t.house_id in
+                <foreach collection="house_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_id != null">and t.admin_id = #{admin_id}</if>
+            <if test="admin_id_L != null"><![CDATA[ and t.admin_id >= #{admin_id_L} and t.admin_id <= #{admin_id_H} ]]></if>
+            <if test="admin_id_Enum != null">
+                and t.admin_id in
+                <foreach collection="admin_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="bs_time != null">and t.bs_time = #{bs_time}</if>
+            <if test="bs_time_S != null"><![CDATA[ and t.bs_time > #{bs_time_S} and t.bs_time < #{bs_time_E} ]]></if>
+            <if test="bs_content != null">
+                <if test="bs_content == ''">
+                    and (t.bs_content is null or t.bs_content = '')
+                </if>
+                <if test="bs_content != ''">
+                    and t.bs_content like #{bs_content}
+                </if>
+            </if>
+            <if test="bs_content_Enum != null">
+                and t.bs_content in
+                <foreach collection="bs_content_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="bs_isDeal != null">
+                <if test="bs_isDeal == ''">
+                    and (t.bs_isDeal is null or t.bs_isDeal = '')
+                </if>
+                <if test="bs_isDeal != ''">
+                    and t.bs_isDeal like #{bs_isDeal}
+                </if>
+            </if>
+            <if test="bs_isDeal_Enum != null">
+                and t.bs_isDeal in
+                <foreach collection="bs_isDeal_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'bs_id'">t.bs_id = #{item.value}</if>
+                    <if test="item.name == 'bs_type'">t.bs_type like #{item.value}</if>
+                    <if test="item.name == 'user_id'">t.user_id = #{item.value}</if>
+                    <if test="item.name == 'user_tel'">t.user_tel like #{item.value}</if>
+                    <if test="item.name == 'house_id'">t.house_id = #{item.value}</if>
+                    <if test="item.name == 'admin_id'">t.admin_id = #{item.value}</if>
+                    <if test="item.name == 'bs_time'">t.bs_time = #{item.value}</if>
+                    <if test="item.name == 'bs_content'">t.bs_content like #{item.value}</if>
+                    <if test="item.name == 'bs_isDeal'">t.bs_isDeal like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="bespeakOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'bs_id'">t.bs_id</if>
+                    <if test="item == 'bs_id_D'">t.bs_id desc</if>
+                    <if test="item == 'bs_type'">t.bs_type</if>
+                    <if test="item == 'bs_type_D'">t.bs_type desc</if>
+                    <if test="item == 'user_id'">t.user_id</if>
+                    <if test="item == 'user_id_D'">t.user_id desc</if>
+                    <if test="item == 'user_tel'">t.user_tel</if>
+                    <if test="item == 'user_tel_D'">t.user_tel desc</if>
+                    <if test="item == 'house_id'">t.house_id</if>
+                    <if test="item == 'house_id_D'">t.house_id desc</if>
+                    <if test="item == 'admin_id'">t.admin_id</if>
+                    <if test="item == 'admin_id_D'">t.admin_id desc</if>
+                    <if test="item == 'bs_time'">t.bs_time</if>
+                    <if test="item == 'bs_time_D'">t.bs_time desc</if>
+                    <if test="item == 'bs_content'">t.bs_content</if>
+                    <if test="item == 'bs_content_D'">t.bs_content desc</if>
+                    <if test="item == 'bs_isDeal'">t.bs_isDeal</if>
+                    <if test="item == 'bs_isDeal_D'">t.bs_isDeal desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertBespeak" parameterType="com.pengesoft.fwzlxt.domain.Bespeak">
+        insert into BespeakTable(
+
+            bs_type,
+            user_id,
+            user_tel,
+            house_id,
+            admin_id,
+            bs_time,
+            bs_content,
+            bs_isDeal
+        )values(
+
+            #{bs_type,jdbcType=VARCHAR},
+            #{user_id,jdbcType=INTEGER},
+            #{user_tel,jdbcType=VARCHAR},
+            #{house_id,jdbcType=INTEGER},
+            #{admin_id,jdbcType=INTEGER},
+            #{bs_time,jdbcType=TIMESTAMP},
+            #{bs_content,jdbcType=VARCHAR},
+            #{bs_isDeal,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateBespeak" parameterType="com.pengesoft.fwzlxt.domain.Bespeak">
+        update BespeakTable set
+            bs_type = #{bs_type,jdbcType=VARCHAR},
+            user_id = #{user_id,jdbcType=INTEGER},
+            user_tel = #{user_tel,jdbcType=VARCHAR},
+            house_id = #{house_id,jdbcType=INTEGER},
+            admin_id = #{admin_id,jdbcType=INTEGER},
+            bs_time = #{bs_time,jdbcType=TIMESTAMP},
+            bs_content = #{bs_content,jdbcType=VARCHAR},
+            bs_isDeal = #{bs_isDeal,jdbcType=VARCHAR}
+        where bs_id=#{bs_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteBespeak" parameterType="com.pengesoft.fwzlxt.domain.Bespeak">
+        delete from BespeakTable where bs_id=#{bs_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseBespeak" parameterType="com.pengesoft.fwzlxt.domain.Bespeak" resultMap="bespeakResultMap">
+        select
+        <include refid="bespeakBaseCol" />
+        from BespeakTable t where t.bs_id=#{bs_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getBespeak" parameterType="com.pengesoft.fwzlxt.domain.Bespeak" resultMap="bespeakResultMap">
+        select t.* from BespeakTable t where t.bs_id=#{bs_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryBespeakCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from BespeakTable t
+        <include refid="bespeakWhereSql" />
+    </select>
+
+    <select id="queryBaseBespeakList" parameterType="java.util.Map" resultMap="bespeakResultMap">
+        select
+        <include refid="bespeakBaseCol" />
+        from BespeakTable t
+        <include refid="bespeakWhereSql" />
+        <include refid="bespeakOrderSql" />
+    </select>
+
+    <select id="queryBespeakList" parameterType="java.util.Map" resultMap="bespeakResultMap">
+        select t.* from BespeakTable t
+        <include refid="bespeakWhereSql" />
+        <include refid="bespeakOrderSql" />
+    </select>
+</mapper>

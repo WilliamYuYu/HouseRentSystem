@@ -1,8 +1,8 @@
 package com.pengesoft.fwzlxt.domain.dao;
 
 import com.pengesoft.fwzlxt.domain.User;
-import pengesoft.db.DataProvider;
 import org.springframework.stereotype.Repository;
+import pengesoft.db.DataProvider;
 
 /**
  * 用户信息 数据访问接口基本实现类.

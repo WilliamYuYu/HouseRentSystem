@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    员工信息的MyBatis映射文件.
+    作者：余展鹏.
+    创建时间：2019/12/13 17:22:59.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.AdminDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.Admin" id="adminResultMap">
+        <id property="admin_id" column="admin_id" />
+        <result property="admin_name" column="admin_name" />
+        <result property="admin_pwd" column="admin_pwd" />
+        <result property="admin_realName" column="admin_realName" />
+        <result property="admin_tel" column="admin_tel" />
+    </resultMap>
+
+    <sql id="adminBaseCol">
+        t.admin_id,t.admin_name,t.admin_pwd,t.admin_realName,t.admin_tel
+    </sql>
+
+    <sql id="adminWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="admin_id != null">and t.admin_id = #{admin_id}</if>
+            <if test="admin_id_L != null"><![CDATA[ and t.admin_id >= #{admin_id_L} and t.admin_id <= #{admin_id_H} ]]></if>
+            <if test="admin_id_Enum != null">
+                and t.admin_id in
+                <foreach collection="admin_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_name != null">
+                <if test="admin_name == ''">
+                    and (t.admin_name is null or t.admin_name = '')
+                </if>
+                <if test="admin_name != ''">
+                    and t.admin_name like #{admin_name}
+                </if>
+            </if>
+            <if test="admin_name_Enum != null">
+                and t.admin_name in
+                <foreach collection="admin_name_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_pwd != null">
+                <if test="admin_pwd == ''">
+                    and (t.admin_pwd is null or t.admin_pwd = '')
+                </if>
+                <if test="admin_pwd != ''">
+                    and t.admin_pwd like #{admin_pwd}
+                </if>
+            </if>
+            <if test="admin_pwd_Enum != null">
+                and t.admin_pwd in
+                <foreach collection="admin_pwd_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_realName != null">
+                <if test="admin_realName == ''">
+                    and (t.admin_realName is null or t.admin_realName = '')
+                </if>
+                <if test="admin_realName != ''">
+                    and t.admin_realName like #{admin_realName}
+                </if>
+            </if>
+            <if test="admin_realName_Enum != null">
+                and t.admin_realName in
+                <foreach collection="admin_realName_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="admin_tel != null">
+                <if test="admin_tel == ''">
+                    and (t.admin_tel is null or t.admin_tel = '')
+                </if>
+                <if test="admin_tel != ''">
+                    and t.admin_tel like #{admin_tel}
+                </if>
+            </if>
+            <if test="admin_tel_Enum != null">
+                and t.admin_tel in
+                <foreach collection="admin_tel_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'admin_id'">t.admin_id = #{item.value}</if>
+                    <if test="item.name == 'admin_name'">t.admin_name like #{item.value}</if>
+                    <if test="item.name == 'admin_pwd'">t.admin_pwd like #{item.value}</if>
+                    <if test="item.name == 'admin_realName'">t.admin_realName like #{item.value}</if>
+                    <if test="item.name == 'admin_tel'">t.admin_tel like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="adminOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'admin_id'">t.admin_id</if>
+                    <if test="item == 'admin_id_D'">t.admin_id desc</if>
+                    <if test="item == 'admin_name'">t.admin_name</if>
+                    <if test="item == 'admin_name_D'">t.admin_name desc</if>
+                    <if test="item == 'admin_pwd'">t.admin_pwd</if>
+                    <if test="item == 'admin_pwd_D'">t.admin_pwd desc</if>
+                    <if test="item == 'admin_realName'">t.admin_realName</if>
+                    <if test="item == 'admin_realName_D'">t.admin_realName desc</if>
+                    <if test="item == 'admin_tel'">t.admin_tel</if>
+                    <if test="item == 'admin_tel_D'">t.admin_tel desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertAdmin" parameterType="com.pengesoft.fwzlxt.domain.Admin">
+        insert into AdminTable(
+
+            admin_name,
+            admin_pwd,
+            admin_realName,
+            admin_tel
+        )values(
+
+            #{admin_name,jdbcType=VARCHAR},
+            #{admin_pwd,jdbcType=VARCHAR},
+            #{admin_realName,jdbcType=VARCHAR},
+            #{admin_tel,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateAdmin" parameterType="com.pengesoft.fwzlxt.domain.Admin">
+        update AdminTable set
+            admin_name = #{admin_name,jdbcType=VARCHAR},
+            admin_pwd = #{admin_pwd,jdbcType=VARCHAR},
+            admin_realName = #{admin_realName,jdbcType=VARCHAR},
+            admin_tel = #{admin_tel,jdbcType=VARCHAR}
+        where admin_id=#{admin_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteAdmin" parameterType="com.pengesoft.fwzlxt.domain.Admin">
+        delete from AdminTable where admin_id=#{admin_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseAdmin" parameterType="com.pengesoft.fwzlxt.domain.Admin" resultMap="adminResultMap">
+        select
+        <include refid="adminBaseCol" />
+        from AdminTable t where t.admin_id=#{admin_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getAdmin" parameterType="com.pengesoft.fwzlxt.domain.Admin" resultMap="adminResultMap">
+        select t.* from AdminTable t where t.admin_id=#{admin_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryAdminCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from AdminTable t
+        <include refid="adminWhereSql" />
+    </select>
+
+    <select id="queryBaseAdminList" parameterType="java.util.Map" resultMap="adminResultMap">
+        select
+        <include refid="adminBaseCol" />
+        from AdminTable t
+        <include refid="adminWhereSql" />
+        <include refid="adminOrderSql" />
+    </select>
+
+    <select id="queryAdminList" parameterType="java.util.Map" resultMap="adminResultMap">
+        select t.* from AdminTable t
+        <include refid="adminWhereSql" />
+        <include refid="adminOrderSql" />
+    </select>
+</mapper>

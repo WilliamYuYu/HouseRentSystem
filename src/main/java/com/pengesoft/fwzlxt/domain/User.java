@@ -1,12 +1,12 @@
 package com.pengesoft.fwzlxt.domain;
 
-import pengesoft.data.*;
+import pengesoft.data.DataPacket;
 
 /**
  * 用户信息 的摘要说明。
  *
- * @auther: 李晓东.
- * @date: 2019/12/16 10:53:29.
+ * @auther: 余展鹏.
+ * @date: 2019/12/16 11:31:14.
  *
  * 文件由鹏业软件模型工具生成(模板名称：JavaAdv),一般不应直接修改此文件.
  * Copyright (C) 2008 - 鹏业软件公司
@@ -221,5 +221,4 @@ public class User extends DataPacket {
         return this.getJsonText();
     }
 }
-
 
