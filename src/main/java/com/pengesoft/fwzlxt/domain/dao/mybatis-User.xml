@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    用户信息的MyBatis映射文件.
+    作者：李晓东.
+    创建时间：2019/12/16 11:06:03.
+    文件由鹏业软件模型工具生成(模板名称：JavaMyBatisMap),一般不应直接修改此文件.
+    Copyright (C) 2008 - 鹏业软件公司
+-->
+
+<mapper namespace="com.pengesoft.fwzlxt.domain.dao.UserDao">
+
+    <resultMap type="com.pengesoft.fwzlxt.domain.User" id="userResultMap">
+        <id property="user_id" column="user_id" />
+        <result property="user_name" column="user_name" />
+        <result property="user_pwd" column="user_pwd" />
+        <result property="user_realName" column="user_realName" />
+        <result property="user_age" column="user_age" />
+        <result property="user_tel" column="user_tel" />
+        <result property="user_identity" column="user_identity" />
+        <result property="user_email" column="user_email" />
+        <result property="user_isBreach" column="user_isBreach" />
+    </resultMap>
+
+    <sql id="userBaseCol">
+        t.user_id,t.user_name,t.user_pwd,t.user_realName,t.user_age,t.user_tel,t.user_identity,t.user_email,t.user_isBreach
+    </sql>
+
+    <sql id="userWhereSql">
+        <trim prefix="WHERE" prefixOverrides="and |or ">
+            <if test="user_id != null">and t.user_id = #{user_id}</if>
+            <if test="user_id_L != null"><![CDATA[ and t.user_id >= #{user_id_L} and t.user_id <= #{user_id_H} ]]></if>
+            <if test="user_id_Enum != null">
+                and t.user_id in
+                <foreach collection="user_id_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_name != null">
+                <if test="user_name == ''">
+                    and (t.user_name is null or t.user_name = '')
+                </if>
+                <if test="user_name != ''">
+                    and t.user_name like #{user_name}
+                </if>
+            </if>
+            <if test="user_name_Enum != null">
+                and t.user_name in
+                <foreach collection="user_name_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_pwd != null">
+                <if test="user_pwd == ''">
+                    and (t.user_pwd is null or t.user_pwd = '')
+                </if>
+                <if test="user_pwd != ''">
+                    and t.user_pwd like #{user_pwd}
+                </if>
+            </if>
+            <if test="user_pwd_Enum != null">
+                and t.user_pwd in
+                <foreach collection="user_pwd_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_realName != null">
+                <if test="user_realName == ''">
+                    and (t.user_realName is null or t.user_realName = '')
+                </if>
+                <if test="user_realName != ''">
+                    and t.user_realName like #{user_realName}
+                </if>
+            </if>
+            <if test="user_realName_Enum != null">
+                and t.user_realName in
+                <foreach collection="user_realName_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_age != null">
+                <if test="user_age == ''">
+                    and (t.user_age is null or t.user_age = '')
+                </if>
+                <if test="user_age != ''">
+                    and t.user_age like #{user_age}
+                </if>
+            </if>
+            <if test="user_age_Enum != null">
+                and t.user_age in
+                <foreach collection="user_age_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_tel != null">
+                <if test="user_tel == ''">
+                    and (t.user_tel is null or t.user_tel = '')
+                </if>
+                <if test="user_tel != ''">
+                    and t.user_tel like #{user_tel}
+                </if>
+            </if>
+            <if test="user_tel_Enum != null">
+                and t.user_tel in
+                <foreach collection="user_tel_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_identity != null">
+                <if test="user_identity == ''">
+                    and (t.user_identity is null or t.user_identity = '')
+                </if>
+                <if test="user_identity != ''">
+                    and t.user_identity like #{user_identity}
+                </if>
+            </if>
+            <if test="user_identity_Enum != null">
+                and t.user_identity in
+                <foreach collection="user_identity_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_email != null">
+                <if test="user_email == ''">
+                    and (t.user_email is null or t.user_email = '')
+                </if>
+                <if test="user_email != ''">
+                    and t.user_email like #{user_email}
+                </if>
+            </if>
+            <if test="user_email_Enum != null">
+                and t.user_email in
+                <foreach collection="user_email_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="user_isBreach != null">
+                <if test="user_isBreach == ''">
+                    and (t.user_isBreach is null or t.user_isBreach = '')
+                </if>
+                <if test="user_isBreach != ''">
+                    and t.user_isBreach like #{user_isBreach}
+                </if>
+            </if>
+            <if test="user_isBreach_Enum != null">
+                and t.user_isBreach in
+                <foreach collection="user_isBreach_Enum" item="item" open="(" separator="," close=")">#{item}</foreach>
+            </if>
+            <if test="_default_mulattr != null">
+                and (
+                <foreach collection="_default_mulattr" item="item" separator=" or ">
+                    <if test="item.name == 'user_id'">t.user_id = #{item.value}</if>
+                    <if test="item.name == 'user_name'">t.user_name like #{item.value}</if>
+                    <if test="item.name == 'user_pwd'">t.user_pwd like #{item.value}</if>
+                    <if test="item.name == 'user_realName'">t.user_realName like #{item.value}</if>
+                    <if test="item.name == 'user_age'">t.user_age like #{item.value}</if>
+                    <if test="item.name == 'user_tel'">t.user_tel like #{item.value}</if>
+                    <if test="item.name == 'user_identity'">t.user_identity like #{item.value}</if>
+                    <if test="item.name == 'user_email'">t.user_email like #{item.value}</if>
+                    <if test="item.name == 'user_isBreach'">t.user_isBreach like #{item.value}</if>
+                </foreach>
+                )
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="userOrderSql">
+        <trim prefix="ORDER BY" suffixOverrides=",">
+            <if test="_orderBys != null">
+                <foreach collection="_orderBys" item="item" open="" separator="," close="">
+                    <if test="item == 'user_id'">t.user_id</if>
+                    <if test="item == 'user_id_D'">t.user_id desc</if>
+                    <if test="item == 'user_name'">t.user_name</if>
+                    <if test="item == 'user_name_D'">t.user_name desc</if>
+                    <if test="item == 'user_pwd'">t.user_pwd</if>
+                    <if test="item == 'user_pwd_D'">t.user_pwd desc</if>
+                    <if test="item == 'user_realName'">t.user_realName</if>
+                    <if test="item == 'user_realName_D'">t.user_realName desc</if>
+                    <if test="item == 'user_age'">t.user_age</if>
+                    <if test="item == 'user_age_D'">t.user_age desc</if>
+                    <if test="item == 'user_tel'">t.user_tel</if>
+                    <if test="item == 'user_tel_D'">t.user_tel desc</if>
+                    <if test="item == 'user_identity'">t.user_identity</if>
+                    <if test="item == 'user_identity_D'">t.user_identity desc</if>
+                    <if test="item == 'user_email'">t.user_email</if>
+                    <if test="item == 'user_email_D'">t.user_email desc</if>
+                    <if test="item == 'user_isBreach'">t.user_isBreach</if>
+                    <if test="item == 'user_isBreach_D'">t.user_isBreach desc</if>
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insertUser" parameterType="com.pengesoft.fwzlxt.domain.User">
+        insert into UserTable(
+            user_name,
+            user_pwd,
+            user_realName,
+            user_age,
+            user_tel,
+            user_identity,
+            user_email,
+            user_isBreach
+        )values(
+            #{user_name,jdbcType=VARCHAR},
+            #{user_pwd,jdbcType=VARCHAR},
+            #{user_realName,jdbcType=VARCHAR},
+            #{user_age,jdbcType=VARCHAR},
+            #{user_tel,jdbcType=VARCHAR},
+            #{user_identity,jdbcType=VARCHAR},
+            #{user_email,jdbcType=VARCHAR},
+            #{user_isBreach,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="updateUser" parameterType="com.pengesoft.fwzlxt.domain.User">
+        update UserTable set
+            user_name = #{user_name,jdbcType=VARCHAR},
+            user_pwd = #{user_pwd,jdbcType=VARCHAR},
+            user_realName = #{user_realName,jdbcType=VARCHAR},
+            user_age = #{user_age,jdbcType=VARCHAR},
+            user_tel = #{user_tel,jdbcType=VARCHAR},
+            user_identity = #{user_identity,jdbcType=VARCHAR},
+            user_email = #{user_email,jdbcType=VARCHAR},
+            user_isBreach = #{user_isBreach,jdbcType=VARCHAR}
+        where user_id=#{user_id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteUser" parameterType="com.pengesoft.fwzlxt.domain.User">
+        delete from UserTable where user_id=#{user_id,jdbcType=INTEGER}
+    </delete>
+
+
+    <select id="getBaseUser" parameterType="com.pengesoft.fwzlxt.domain.User" resultMap="userResultMap">
+        select
+        <include refid="userBaseCol" />
+        from UserTable t where t.user_id=#{user_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="getUser" parameterType="com.pengesoft.fwzlxt.domain.User" resultMap="userResultMap">
+        select t.* from UserTable t where t.user_id=#{user_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryUserCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from UserTable t
+        <include refid="userWhereSql" />
+    </select>
+
+    <select id="queryBaseUserList" parameterType="java.util.Map" resultMap="userResultMap">
+        select
+        <include refid="userBaseCol" />
+        from UserTable t
+        <include refid="userWhereSql" />
+        <include refid="userOrderSql" />
+    </select>
+
+    <select id="queryUserList" parameterType="java.util.Map" resultMap="userResultMap">
+        select t.* from UserTable t
+        <include refid="userWhereSql" />
+        <include refid="userOrderSql" />
+    </select>
+</mapper>
