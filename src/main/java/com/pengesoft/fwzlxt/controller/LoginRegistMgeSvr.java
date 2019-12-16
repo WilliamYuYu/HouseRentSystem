@@ -129,7 +129,7 @@ public class LoginRegistMgeSvr extends ApplicationBase implements ILoginRegistMg
     @Override
     public String sendRegistCode(String telephone) {
         //TODO: 未实现.HELLO
-        return "BNULL";
+        return null;
     }
 
     /**
