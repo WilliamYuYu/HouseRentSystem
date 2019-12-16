@@ -209,7 +209,7 @@ public class UserMgeSvr extends ApplicationBase implements IUserMgeSvr {
     @Override
     public String payOrder(int order_id, double payAmount) {
         //TODO: 未实现.
-        return null;
+        return "HELLO";
     }
 
     /**
