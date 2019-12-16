@@ -84,5 +84,6 @@ public interface ILoginRegistMgeSvr extends IApplication {
     @PublishMethod
     String sendLoginCode(String telephone);
 
+
 }
 

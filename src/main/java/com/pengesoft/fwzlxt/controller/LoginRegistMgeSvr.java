@@ -1,5 +1,14 @@
 package com.pengesoft.fwzlxt.controller;
 
+
+import com.aliyuncs.CommonRequest;
+import com.aliyuncs.CommonResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.IAcsClient;
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.exceptions.ServerException;
+import com.aliyuncs.http.MethodType;
+import com.aliyuncs.profile.DefaultProfile;
 import com.pengesoft.fwzlxt.domain.User;
 import com.pengesoft.fwzlxt.domain.dao.UserDao;
 import com.pengesoft.fwzlxt.domain.dao.UserQueryPara;
@@ -130,9 +139,29 @@ public class LoginRegistMgeSvr extends ApplicationBase implements ILoginRegistMg
      */
     @Override
     public String sendLoginCode(String telephone) {
-        //TODO: 未实现.
-        return null;
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4Fi3TRgNfmR1jrhPLSi2", "oO0ceoUkJq3wYEG6xRYmhSFRmvoRd9");
+        IAcsClient client = new DefaultAcsClient(profile);
+
+        CommonRequest request = new CommonRequest();
+        request.setMethod(MethodType.POST);
+        request.setDomain("dysmsapi.aliyuncs.com");
+        request.setVersion("2017-05-25");
+        request.setAction("SendSms");
+        request.putQueryParameter("RegionId", "cn-hangzhou");
+        request.putQueryParameter("PhoneNumbers", "17781205980");
+        request.putQueryParameter("SignName", "PY租赁系统");
+        request.putQueryParameter("TemplateCode", "SMS_179601977");//注册码
+        request.putQueryParameter("TemplateParam", "{\"code\":666666}");
+        try {
+            CommonResponse response = client.getCommonResponse(request);
+            System.out.println(response.getData());
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        } return null;
     }
+
 
 }
 
