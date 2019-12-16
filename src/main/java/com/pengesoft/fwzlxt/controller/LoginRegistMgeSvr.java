@@ -139,30 +139,30 @@ public class LoginRegistMgeSvr extends ApplicationBase implements ILoginRegistMg
      */
     @Override
     public String sendLoginCode(String telephone) {
-//        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4Fi3TRgNfmR1jrhPLSi2", "oO0ceoUkJq3wYEG6xRYmhSFRmvoRd9");
-//        IAcsClient client = new DefaultAcsClient(profile);
-//        telephone = "13547971976";
-//        String logincode = Double.toString((Math.random()*9+1)*100000);
-//        String s = "{\"code\":"+logincode+"}";
-//        CommonRequest request = new CommonRequest();
-//        request.setMethod(MethodType.POST);
-//        request.setDomain("dysmsapi.aliyuncs.com");
-//        request.setVersion("2017-05-25");
-//        request.setAction("SendSms");
-//        request.putQueryParameter("RegionId", "cn-hangzhou");
-//        request.putQueryParameter("PhoneNumbers", "telephone");
-//        request.putQueryParameter("SignName", "PY租赁系统");
-//        request.putQueryParameter("TemplateCode", "SMS_179601977");//注册码
-//        request.putQueryParameter("TemplateParam", "s");
-//        try {
-//            CommonResponse response = client.getCommonResponse(request);
-//            System.out.println(response.getData());
-//        } catch (ServerException e) {
-//            e.printStackTrace();
-//        } catch (ClientException e) {
-//            e.printStackTrace();
-//        } return null;
-        return null;
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4Fi3TRgNfmR1jrhPLSi2", "oO0ceoUkJq3wYEG6xRYmhSFRmvoRd9");
+        IAcsClient client = new DefaultAcsClient(profile);
+        telephone = "13547971976";
+        String logincode = Double.toString((Math.random()*9+1)*100000);
+        String s = "{\"code\":"+logincode+"}";
+        CommonRequest request = new CommonRequest();
+        request.setMethod(MethodType.POST);
+        request.setDomain("dysmsapi.aliyuncs.com");
+        request.setVersion("2017-05-25");
+        request.setAction("SendSms");
+        request.putQueryParameter("RegionId", "cn-hangzhou");
+        request.putQueryParameter("PhoneNumbers", "telephone");
+        request.putQueryParameter("SignName", "PY租赁系统");
+        request.putQueryParameter("TemplateCode", "SMS_179601977");//注册码
+        request.putQueryParameter("TemplateParam", "s");
+        try {
+            CommonResponse response = client.getCommonResponse(request);
+            System.out.println(response.getData());
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        } return null;
+
     }
 
 
